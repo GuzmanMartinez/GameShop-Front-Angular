@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "game-front"
+    }
+  },
+  "defaultProject": "game-front",
+  "cli": {
+    "analytics": false
+  }
 }
