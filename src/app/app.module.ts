@@ -17,6 +17,7 @@ const ROUTES: Routes = [
   { path: '', redirectTo: '/juegos', pathMatch: 'full'},
   {path: 'juegos',component:JuegosComponent},
   {path: 'juegos/form',component:JuegosFormComponent},
+  {path: 'juegos/form/:id',component:JuegosFormComponent},
   {path: 'companies',component:CompaniesComponent},
 ]
 

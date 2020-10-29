@@ -21,6 +21,7 @@
         <th>Precio</th>
         <th>PEGI</th>
         <th>Categoria</th>
+        <th>Compañia</th>
       </thead>
       <tbody>
         <tr *ngFor="let juego of juegos">
@@ -30,6 +31,7 @@
           <td>{{juego.precio}}</td>
           <td>{{juego.pegi}}</td>
           <td>{{juego.categoria | uppercase}}</td>
+          <td><span *ngFor="let company  of juego.companies; index as i">{{company.nombre}}{{(juego.companies.length > 1 && i < juego.companies.length - 1) ? ', ' : ''}}</span></td>
         </tr>
       </tbody>
     </table>

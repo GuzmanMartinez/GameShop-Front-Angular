@@ -18,6 +18,7 @@
         <th *ngIf="showId">ID</th>
         <th>CIF</th>
         <th>Nombre</th>
+        <th>Juegos</th>
 
 
       </thead>
@@ -26,7 +27,7 @@
           <td *ngIf="showId">{{company.idCompany}}</td>
           <td>{{company.cif}}</td>
           <td>{{company.nombre}}</td>
-
+          <td><span *ngFor="let juego  of company.juegos; index as i">{{juego.titulo}}{{(company.juegos.length > 1 && i < company.juegos.length - 1) ? ', ' : ''}}</span></td>
         </tr>
       </tbody>
     </table>
