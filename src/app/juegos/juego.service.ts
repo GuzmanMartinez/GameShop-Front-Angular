@@ -39,7 +39,6 @@ export class JuegoService {
   }
 
   getJuego(id: number):Observable<Juego>{
-    //return of(JUEGOS);
     return this.http.get<Juego>(`${this.urlServer}juegos/${id}`).pipe(
       catchError(e =>{
         console.error(`getJuego error: "${e.message}"`);
@@ -50,14 +49,29 @@ export class JuegoService {
   }
 
   update(juego: Juego):Observable<Juego>{
-    //return of(JUEGOS);
     return this.http.put<Juego>(`${this.urlServer}juegos/${juego.idJuego}`,juego,{headers:this.httpHeaders}).pipe(
-      catchError(e =>{
-        console.error(`update error: "${e.message}"`);
-        this.alertService.error(`Error al consultar el juegos: "${e.message}"`,{autoClose: false,keepAfterRouteChange: false});
-        return throwError(e);
-      })
+      catchError(e => {
+              console.error(`update error: "${e.message}"`);
+              if (e.status == 400) {
+                e.error.errorMessage.replace('[', '').replace(']', '').split(', ').reverse().forEach(errorMessage => {
+                  this.alertService.error(errorMessage);
+                });
+              } else {
+                this.alertService.error(`Error al actualizar el juego: "${e.message}"`);
+              }
+              return throwError(e);
+            })
     );
   }
+
+  delete(id: number): Observable<any> {
+   return this.http.delete(`${this.urlServer}juegos/${id}`).pipe(
+     catchError(e => {
+       console.error(`delete error: "${e.message}"`);
+       this.alertService.error(`Error al borrar el juego: "${e.message}"`);
+       return throwError(e);
+     })
+   );
+ }
 
 }

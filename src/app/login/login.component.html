@@ -1,0 +1,37 @@
+<div class="card bg-light">
+  <div class="card-header">Login</div>
+  <div class="card-body">
+    <form #loginForm="ngForm">
+      <div class="form-group row">
+        <label for="username" class="col-form-label col-sm-3">Nombre de usuario</label>
+        <div class="col-sm-6">
+          <input name="username" type="text" class="form-control" [(ngModel)]="credentials.username" placeholder="Nombre de usuario" maxlength="255" required #username="ngModel">
+          <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+            <div *ngIf="username.errors.required">
+              Debe rellenar el nombre de usuario
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="password" class="col-form-label col-sm-3">Contraseña</label>
+        <div class="col-sm-6">
+          <input name="password" type="password" class="form-control" [(ngModel)]="credentials.password" placeholder="Contraseña" maxlength="255" required #password="ngModel">
+          <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors.required">
+              Debe rellenar la contraseña
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-1">
+          <button class="btn btn-primary" (click)="login()" [disabled]="!loginForm.form.valid">Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

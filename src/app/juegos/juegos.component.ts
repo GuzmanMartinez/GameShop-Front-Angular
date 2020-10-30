@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Juego } from './juego';
 import { JuegoService } from './juego.service';
+import { AlertService } from '../alert/alert.service';
 
 @Component({
   selector: 'app-juegos',
@@ -13,7 +14,8 @@ export class JuegosComponent implements OnInit {
 
   juegos: Juego[] ;
 
- constructor(private juegoService: JuegoService) { }
+ constructor(private juegoService: JuegoService,
+             private alertService:AlertService) { }
 
 
 
@@ -22,9 +24,26 @@ export class JuegosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.refreshJuegos();
+  }
+
+  delete(juego: Juego): void{
+    if(confirm(`¿Esta seguro que desea eliminar el juego "${juego.titulo}"?`)){
+      this.juegoService.delete(juego.idJuego).subscribe(
+      response =>{
+        this.alertService.success(`El juego "${juego.titulo}" ha sido borrado correctamente`,{autoClose: true,keepAfterRouteChange: false});
+        this.refreshJuegos();
+      }
+    );
+    }
+  }
+
+  private refreshJuegos(): void {
     this.juegoService.getJuegos().subscribe(
       juegos => this.juegos = juegos
     );
-  }
+}
+
+
 
 }

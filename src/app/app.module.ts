@@ -11,7 +11,8 @@ import { AlertComponent } from './alert/alert.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CompaniesComponent } from './companies/companies.component';
 import { FormComponent  as JuegosFormComponent} from './juegos/form.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component'
 
 const ROUTES: Routes = [
   { path: '', redirectTo: '/juegos', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const ROUTES: Routes = [
   {path: 'juegos/form',component:JuegosFormComponent},
   {path: 'juegos/form/:id',component:JuegosFormComponent},
   {path: 'companies',component:CompaniesComponent},
+  {path: 'login',component:LoginComponent},
 ]
 
 
@@ -30,7 +32,8 @@ const ROUTES: Routes = [
     JuegosComponent,
     AlertComponent,
     CompaniesComponent,
-    JuegosFormComponent
+    JuegosFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

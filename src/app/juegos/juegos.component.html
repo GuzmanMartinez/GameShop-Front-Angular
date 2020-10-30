@@ -22,6 +22,7 @@
         <th>PEGI</th>
         <th>Categoria</th>
         <th>Compañia</th>
+        <th>Acciones</th>
       </thead>
       <tbody>
         <tr *ngFor="let juego of juegos">
@@ -32,6 +33,10 @@
           <td>{{juego.pegi}}</td>
           <td>{{juego.categoria | uppercase}}</td>
           <td><span *ngFor="let company  of juego.companies; index as i">{{company.nombre}}{{(juego.companies.length > 1 && i < juego.companies.length - 1) ? ', ' : ''}}</span></td>
+          <td>
+            <button type="button" [routerLink]="['form', juego.idJuego]" class="btn btn-primary btn-sm">Editar</button>
+            <button type="button" (click)='delete(juego)' class="btn btn-danger btn-sm ml-2">Borrar</button>
+          </td>
         </tr>
       </tbody>
     </table>
