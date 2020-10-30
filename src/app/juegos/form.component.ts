@@ -37,6 +37,12 @@ export class FormComponent implements OnInit {
    );
  }
 
+ public update(): void {
+   this.juegoService.update(this.juego).subscribe(
+     response => this.router.navigate(['/juegos'])
+   );
+ }
+
  loadCompanies(): void{
    this.companyService.getCompanies().subscribe(
      company => this.companies = company
